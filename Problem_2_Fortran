@@ -1,0 +1,25 @@
+PROGRAM countupper
+    IMPLICIT NONE
+        INTEGER :: N, t, i, j, upperCount
+        CHARACTER(len=100) :: lineOfCh
+
+        READ *, N
+        IF (N < 1 .OR. N > 100) STOP
+
+        
+        DO i = 1, N 
+            upperCount = 0
+            READ *, t, lineOfCh ! reads the count AND the whole string at once
+            
+            IF (t < 1 .OR. t > 100) STOP
+
+            
+            DO j = 1, t
+                IF (lineOfCh(j:j) >= 'A' .AND. lineOfCh(j:j) <= 'Z') THEN
+                    upperCount = upperCount + 1
+                END IF
+            END DO
+            
+            PRINT '(I0)', upperCount
+        END DO
+END PROGRAM countupper

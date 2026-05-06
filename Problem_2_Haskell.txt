@@ -1,0 +1,29 @@
+import Data.Char (isUpper)
+import Control.Monad (replicateM_)
+import System.Exit (exitSuccess)
+
+-- reads one test case line where the first token is ignored length/value, and the remaining tokens contain the text to analyze.
+processTestCase :: IO ()
+processTestCase = do
+    line <- getLine
+    let parts = words line
+    -- pattern matching occurs in these two list patterns
+    case parts of
+        (tStr:remainingChars) -> do
+            let t = read tStr :: Int -- parse the first token to match expected input format.
+            if t < 1 || t > 100 
+                then exitSuccess 
+                else do
+                    let chars = concat remainingChars -- join remaining tokens so uppercase counting works even with spaces.
+                    let count = length (filter isUpper chars) -- count how many uppercase letters there are.
+                    print count
+        [] -> exitSuccess
+
+main :: IO ()
+main = do
+    line <- getLine
+    let n = read line :: Int -- N test cases
+    if n < 1 || n > 100
+        then exitSuccess
+        else replicateM_ n processTestCase
+-- input of t and the following characters must be a one liner with t and 1st character separated by a space

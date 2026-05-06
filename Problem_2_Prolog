@@ -1,0 +1,36 @@
+count_uppercase([], 0).
+
+count_uppercase([H|T], Count) :-
+    char_type(H, upper),           % checks if H is A-Z
+    count_uppercase(T, RestCount), % go look at the rest of the list
+    Count is RestCount + 1.        % Add 1 to whatever we found in the rest
+    
+count_uppercase([H|T], Count) :-
+    \+ char_type(H, upper),        %  \+ means "NOT"
+    count_uppercase(T, Count).     % Count stays exactly the same as the Tail's count
+    
+% --- PART 2: The Input Handling ---
+
+% Main loop to handle N test cases
+solve :-
+    read_line_to_string(user_input, NStr), % Read N as a string
+    number_string(N, NStr),               % Convert string "2" to integer 2
+    process_test_cases(N).
+
+process_test_cases(0) :- !.
+process_test_cases(N) :-
+    read_line_to_string(user_input, Line), % Read the whole line (e.g., "3 abc")
+    split_string(Line, " ", "", [TStr, CharsStr]), % Split at the space
+    
+    % Now we have the characters in a string, convert to list
+    string_chars(CharsStr, List),
+    count_uppercase(List, Result),
+    
+    % Output
+    writeln(Result), 
+    
+    % Loop back
+    NextN is N - 1,
+    process_test_cases(NextN).
+
+:- initialization(solve).

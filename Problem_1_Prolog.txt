@@ -1,0 +1,17 @@
+calculate_lulus_weekly_allowance(Numbers) :- % Define a rule that takes a list of numbers as input.
+
+    % finds the 7th element in the list and stores it in 'Multiplier'
+    nth1(7, Numbers, Multiplier),
+
+    % constraints
+    Multiplier >= 1,
+    Multiplier =< 100,
+
+    Weekly_Allowance is Multiplier * 2.75,
+
+    % ~w is for the Multiplier, ~2f is for the Weekly_Allowance, 2 is for decimal points
+    format('The multiplier is ~w! Lulu\'s allowance for the week is $ ~2f!', [Multiplier, Weekly_Allowance]).
+
+
+% runs as program starts
+:- initialization((calculate_lulus_weekly_allowance([1, 2, 3, 4, 5, 6, 3, 4, 3, 5]), halt)).
