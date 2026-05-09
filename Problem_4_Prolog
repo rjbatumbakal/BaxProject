@@ -3,10 +3,10 @@ print_with_spaces([A, B, C]) :-
 
 
 process_sort(OriginalList) :-
-    % 1. Unpack the list into three variables to check constraints
+    % assign list into three variables to check constraints
     [N1, N2, N3] = OriginalList,
     
-    % 2. Constraints: Each must be between -100 and 100
+    % constraints
     between(-100, 100, N1),
     between(-100, 100, N2),
     between(-100, 100, N3),

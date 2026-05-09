@@ -1,19 +1,30 @@
 count_uppercase([], 0).
 
 count_uppercase([Head|Tail], Count) :-
-    char_type(Head, upper),           % checks if H is A-Z
-    count_uppercase(Tail, RestCount), % go look at the rest of the list
-    Count is RestCount + 1.        % add 1 to whatever we found in the rest
+    % checks if H is A-Z
+    char_type(Head, upper),   
+
+    % go look at the rest of the list
+    count_uppercase(Tail, RestCount), 
+    
+    % add 1 to whatever we found in the rest
+    Count is RestCount + 1.        
     
 count_uppercase([Head|Tail], Count) :-
-    \+ char_type(Head, upper),        %  \+ means "NOT"
-    count_uppercase(Tail, Count).     % count stays exactly the same as the Tail's count
+    
+    %  \+ means "NOT"
+    \+ char_type(Head, upper),   
+    
+    % count stays exactly the same as the Tail's count
+    count_uppercase(Tail, Count).     
     
 process_test_cases(0) :- !.
 
 process_test_cases(N) :-
     read_line_to_string(user_input, N_char_string),
-    split_string(N_char_string, " ", "", [T_string, Char_string]), % split at the space
+    
+    %split the string by spaces
+    split_string(N_char_string, " ", "", [T_string, Char_string]), 
     
     % convert t and check constraint
     number_string(T, T_string),
@@ -31,8 +42,11 @@ process_test_cases(N) :-
 
 solve :-
     read_line_to_string(user_input, N_string), 
+    
+    % convert N and check constraint
     number_string(N, N_string),
     between(1, 100, N),
+    
     process_test_cases(N).
 
 :- initialization((solve, halt)).

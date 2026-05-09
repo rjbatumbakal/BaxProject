@@ -1,17 +1,19 @@
-% base case, an empty list has no even numbers
 filter_evens([], []).
 
-% case 1: if head is even, keep it and move to the Tail
-filter_evens([H|T], [H|Evens]) :-
-    0 is H mod 2,             % 'mod 2' checks the remainder
-    filter_evens(T, Evens).
+filter_evens([Head|Tail], [Head|Evens]) :-
+    0 is Head mod 2,             % 'mod 2' checks the remainder
+    filter_evens(Tail, Evens).
 
-% case 2: if the head is not even, skip it and move to the Tail
-filter_evens([H|T], Evens) :-
-    1 is abs(H mod 2),        % abs() handles negative numbers
-    filter_evens(T, Evens).
+filter_evens([Head|Tail], Evens) :-
+    1 is abs(Head mod 2),        % abs() handles negative numbers
+    filter_evens(Tail, Evens).
     
+check_range(N) :- between(-1000, 1000, N).
+
 process_line(Numbers) :-
+    % check constraints
+    maplist(check_range, Numbers),
+    
     % gets only the even numbers
     filter_evens(Numbers, Evens),
     
@@ -23,9 +25,15 @@ process_line(Numbers) :-
 
 solve :-
     read_line_to_string(user_input, Line),
-    % use [_|StringList] to skip the N, first number
-    split_string(Line, " ", "", [_|StringList]),
+    split_string(Line, " ", "", [NStr|StringList]),
+    
+    % convert N and check constraint
+    number_string(N, NStr),
+    between(2, 100, N),
+    
+    % convert the rest of the numbers
     maplist(number_string, Numbers, StringList),
+    
     process_line(Numbers).
 
     
