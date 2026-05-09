@@ -1,0 +1,22 @@
+calculate_average([S1, S2, S3]) :-
+   
+    % Constraints
+    between(1, 20, S1),
+    between(1, 20, S2),
+    between(1, 20, S3),
+
+    Average is (S1 + S2 + S3) / 3,
+    format('~2f~n', [Average]).
+
+solve :-
+    read_line_to_string(user_input, String),
+    
+    % splits the string at the spaces
+    split_string(String, " ", "", StringList),
+    
+    % convert the list of strings into a list of actual numbers
+    maplist(number_string, Numbers, StringList),
+    
+    calculate_average(Numbers).
+    
+:- initialization((solve, halt)).

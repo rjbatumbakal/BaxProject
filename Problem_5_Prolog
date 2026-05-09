@@ -1,0 +1,32 @@
+% base case, an empty list has no even numbers
+filter_evens([], []).
+
+% case 1: if head is even, keep it and move to the Tail
+filter_evens([H|T], [H|Evens]) :-
+    0 is H mod 2,             % 'mod 2' checks the remainder
+    filter_evens(T, Evens).
+
+% case 2: if the head is not even, skip it and move to the Tail
+filter_evens([H|T], Evens) :-
+    1 is abs(H mod 2),        % abs() handles negative numbers
+    filter_evens(T, Evens).
+    
+process_line(Numbers) :-
+    % gets only the even numbers
+    filter_evens(Numbers, Evens),
+    
+    % reverse list
+    reverse(Evens, ReversedEvens),
+    
+    atomic_list_concat(ReversedEvens, ' ', Output),
+    writeln(Output).
+
+solve :-
+    read_line_to_string(user_input, Line),
+    % use [_|StringList] to skip the N, first number
+    split_string(Line, " ", "", [_|StringList]),
+    maplist(number_string, Numbers, StringList),
+    process_line(Numbers).
+
+    
+:- initialization((solve, halt)).
