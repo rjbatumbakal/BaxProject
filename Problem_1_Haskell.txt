@@ -1,27 +1,21 @@
 import Text.Printf (printf)
 import System.Exit (exitSuccess)
 
--- getValidInput for input
-getValidInput :: IO [Int]
-getValidInput = do
-    line <- getLine
-    let nums = map read (words line) :: [Int]
-    
-    -- checks if integer is out of bounds
-    -- If invalid terminate
-    if length nums == 10 && all (\x -> x >= 1 && x <= 100) nums
-        then return nums
-        else exitSuccess
-
 main :: IO ()
 main = do
-    nums <- getValidInput
+    lineInput <- getLine
     
-    -- extraction of 7th number
-    let seventh_number = nums !! 6
+    -- split the line into words and convert to double
+    let numbers = map read (words lineInput) :: [Double]
     
-    -- calculate  of allowance
-    let weekly_allowance :: Double
-        weekly_allowance = fromIntegral seventh_number * 2.75
-    
-    printf "The multiplier is %d! Lulu's allowance for the week is $ %.2f!\n" seventh_number weekly_allowance
+    if length numbers >= 10
+        then do
+            let multiplier = numbers !! 6
+            
+            -- constraints
+            if multiplier >= 1 && multiplier <= 100
+                then do
+                    let allowance = multiplier * 2.75
+                    printf "The multiplier is %.0f! Lulu's allowance for the week is $ %.2f!\n" multiplier allowance
+                else exitSuccess
+        else exitSuccess
