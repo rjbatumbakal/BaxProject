@@ -1,19 +1,20 @@
 % define a rule that takes a list of numbers as input.
 calculate_lulus_weekly_allowance(Numbers) :- 
 
-    % finds the 7th element in the list and stores it in 'Multiplier'
-    nth1(7, Numbers, Multiplier),
+    % finds the 7th element in the list and stores it in 'Seventh_number'
+    nth1(7, Numbers, Seventh_number),
 
     % constraints
-    Multiplier >= 1,
-    Multiplier =< 100,
+    Seventh_number >= 1,
+    Seventh_number =< 100,
 
-    Weekly_Allowance is Multiplier * 2.75,
+    Weekly_Allowance is Seventh_number * 2.75,
 
     % ~w is for the Multiplier, ~2f is for the Weekly_Allowance, 2 is for decimal points
-    format('The multiplier is ~w! Lulu\'s allowance for the week is $ ~2f!', [Multiplier, Weekly_Allowance]).
+    format('The multiplier is ~w! Lulu\'s allowance for the week is $ ~2f!', [Seventh_number, Weekly_Allowance]).
 
 solve :-  
+    % reads line as strings
     read_line_to_string(user_input, String),
 
     % split the string by spaces
@@ -22,6 +23,7 @@ solve :-
     % convert strings to actual numbers
     maplist(number_string, Numbers, StringList),
     
+    % calculate
     calculate_lulus_weekly_allowance(Numbers).
 
 :- initialization((solve, halt)).

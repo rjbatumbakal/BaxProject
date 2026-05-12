@@ -4,7 +4,7 @@ import Control.Monad (replicateM_)
 countUpper :: String -> Int
 countUpper [] = 0
 
--- head and tail logic
+-- head and tail logic, split into Head (first char) and Tail (rest)
 countUpper (h:t) 
 
     -- if h is upper, add 1 and keep going
@@ -18,11 +18,12 @@ processLine :: IO ()
 processLine = do
 
     linetch<- getLine
+    -- split input string into a list of words
     let parts = words linetch
     
     case parts of
 
-        -- pattern matching, match t as first item, and followng ch as second
+        -- pattern matching, match t as first item, and followng ch as second, ignore extras (_)
         (tString:ch:_) -> do  
             let t = read tString :: Int
             if t >= 1 && t <= 100
@@ -34,13 +35,14 @@ processLine = do
 
 main :: IO ()
 main = do
-
     lineN <- getLine
+    -- read total number of test cases
     let n = read lineN :: Int
     
     --constraints
     if n >= 1 && n <= 100
-        then replicateM_ n processLine -- loop
+        -- replicateM_ acts as a loop, running 'processLine' n times
+        then replicateM_ n processLine 
     else return ()
     
     

@@ -1,25 +1,24 @@
-PROGRAM countupper
+PROGRAM countUpper
     IMPLICIT NONE
-        INTEGER :: N, t, i, j, upperCount
-        CHARACTER(len=100) :: lineOfCh
+        INTEGER :: N, t, i, j, upperCount ! declaring of variables
+        CHARACTER(len=100) :: lineOfCh ! max length of 100
 
         READ *, N
-        IF (N < 1 .OR. N > 100) STOP
+        IF (N < 1 .OR. N > 100) STOP 
 
         
-        DO i = 1, N 
+        DO i = 1, N ! loop through each test case
             upperCount = 0
-            READ *, t, lineOfCh ! reads the count AND the whole string at once
+            READ *, t, lineOfCh ! reads the count and the whole string at once
             
             IF (t < 1 .OR. t > 100) STOP
-
             
-            DO j = 1, t
+            DO j = 1, t ! loop through the first 't' characters of the string
                 IF (lineOfCh(j:j) >= 'A' .AND. lineOfCh(j:j) <= 'Z') THEN
-                    upperCount = upperCount + 1
+                    upperCount = upperCount + 1 ! counter for uppercases in the lineof Ch
                 END IF
             END DO
             
-            PRINT '(I0)', upperCount
+            PRINT '(I0)', upperCount !(I0) removes leading spaces from output
         END DO
-END PROGRAM countupper
+END PROGRAM countUpper

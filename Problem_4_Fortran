@@ -2,16 +2,11 @@ PROGRAM simpleSort
     IMPLICIT NONE 
 
     INTEGER :: a, b, c, x, y, z, temp
-    
     READ *, a, b, c
-    
-
     IF (a >= -100 .AND. a <= 100 .AND. b >= -100 .AND. b <= 100 .AND. c >= -100 .AND. c <= 100) THEN
-       
         x = a 
         y = b 
         z = c
-        
         IF (x > y) THEN
             temp = x 
             x = y 
@@ -29,12 +24,9 @@ PROGRAM simpleSort
             x = y 
             y = temp 
         END IF
-
         PRINT '(I0, 1X, I0, 1X, I0)', x, y, z ! 1x is for space
         PRINT '(I0, 1X, I0, 1X, I0)', a, b, c
-        
     ELSE
         STOP
     END IF
-    
 END PROGRAM simpleSort

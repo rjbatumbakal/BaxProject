@@ -28,12 +28,17 @@ process_test_cases(N) :-
     
     % convert t and check constraint
     number_string(T, T_string),
-    between(1, 100, T),
+    
+    T >= 1,
+    T =< 100,
     
     % convert to list
-    string_chars(Char_string, List),
-    count_uppercase(List, Result),
-    
+    string_chars(Char_string, FullList),
+    % length/2 can be used to "clip" a list to a specific size
+    length(ClippedList, T), 
+    append(ClippedList, _, FullList), % this extracts the first T elements
+    count_uppercase(ClippedList, Result),
+
     writeln(Result), 
     
     % loop back
@@ -45,7 +50,9 @@ solve :-
     
     % convert N and check constraint
     number_string(N, N_string),
-    between(1, 100, N),
+    
+    N >= 1,
+    N =< 100,
     
     process_test_cases(N).
 

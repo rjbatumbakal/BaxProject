@@ -1,19 +1,16 @@
-PROGRAM LuluAllowance
+PROGRAM lulusWeekylAllowance
 IMPLICIT NONE
 
     INTEGER, DIMENSION(10) :: nums ! this is the array that holds 10 integers
     REAL :: weekly_allowance ! declaring as real type to store the value with decimal points
     INTEGER :: i, seventh_number ! declaring the seventh number
-    
-    
 
     READ *, nums ! reads 10 integers from user, and stores it in the array
-    
 
     DO i = 1, 10 ! loop, checks the array
         IF (nums(i) < 1 .OR. nums(i) > 100) STOP ! constraints
     END DO
-    
+
     seventh_number = nums(7)
     weekly_allowance = REAL(seventh_number) * 2.75
     
@@ -23,4 +20,4 @@ IMPLICIT NONE
     ! IO prints INTEGER seventh_number
     ! F6.1 prints REAL weekly_allowance
     
-END PROGRAM LuluAllowance
+END PROGRAM lulusWeekylAllowance

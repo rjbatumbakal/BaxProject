@@ -7,9 +7,10 @@ main = do
         --head tail logic
         (h:t) -> do
             let intN = read h :: Int
-            let intn = map read t :: [Integer]
+            -- take only the first intN elements from the tail
+            let intn = take intN (map read t :: [Integer])
             
-            if 2 <= intN && intN <= 100 && length intn == intN && all (\n -> n >= -1000 && n <= 1000) intn
+            if 2 <= intN && intN <= 100 && all (\n -> n >= -1000 && n <= 1000) intn
                 then do
                     let evensReversed = filter even (reverse intn)
                     putStrLn (unwords (map show evensReversed))
