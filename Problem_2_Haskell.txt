@@ -5,24 +5,14 @@ countUpper :: String -> Int
 countUpper [] = 0
 
 -- head and tail logic
-countUpper (x:xs) 
+countUpper (h:t) 
 
-    -- if x is upper, add 1 and keep going
-    | isUpper x = 1 + countUpper xs  
+    -- if h is upper, add 1 and keep going
+    | isUpper h = 1 + countUpper t 
     
     -- if not, just keep going with the tail
-    | otherwise = countUpper xs      
+    | otherwise = countUpper t      
 
-main :: IO ()
-main = do
-
-    lineN <- getLine
-    let n = read lineN :: Int
-    
-    --constraints
-    if n >= 1 && n <= 100
-        then replicateM_ n processLine -- loop
-        else return ()
 
 processLine :: IO ()
 processLine = do
@@ -33,11 +23,24 @@ processLine = do
     case parts of
 
         -- pattern matching, match t as first item, and followng ch as second
-        (tStr:ch:_) -> do  
-            let t = read tStr :: Int
+        (tString:ch:_) -> do  
+            let t = read tString :: Int
             if t >= 1 && t <= 100
             
                 -- take the first t letters from ch and count uppercase
                 then print (countUpper (take t ch))
                 else return ()
         _ -> return ()
+
+main :: IO ()
+main = do
+
+    lineN <- getLine
+    let n = read lineN :: Int
+    
+    --constraints
+    if n >= 1 && n <= 100
+        then replicateM_ n processLine -- loop
+    else return ()
+    
+    

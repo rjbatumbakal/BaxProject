@@ -1,15 +1,21 @@
 import Data.List (sort)
-import System.Exit (exitSuccess)
 
 main :: IO ()
 main = do
-    input <- getLine
-    let nums = map read (words input) :: [Int]
-    -- pattern match for exactly 3 integers and check constraints
-    case nums of
-        [a, b, c] | all (\x -> x > -100 && x < 100) [a, b, c] -> do
-            let sortedNums = sort [a, b, c]
-            putStrLn $ unwords (map show sortedNums) --output the sorted version
-            putStrLn $ unwords (map show [a, b, c]) -- output the original version
-        _ -> exitSuccess -- terminate if constraints fail or input is wrong
--- input of three numbers must be a one liner
+    
+    line <- getLine
+    let parts = words line
+
+    let nums = map read parts :: [Integer]
+
+    if length nums == 3 && all (\n -> n >= -100 && n <= 100) nums
+        then do
+            -- sorts number
+            let sortedNums = sort nums
+            
+            -- prints sorted
+            putStrLn (unwords (map show sortedNums))
+            
+            -- prints og
+            putStrLn (unwords (map show nums))
+        else return ()

@@ -6,7 +6,7 @@ IMPLICIT NONE
     INTEGER :: i, seventh_number ! declaring the seventh number
     
     
-    !PRINT *, "Input ten integers:" ! this is the prompt
+
     READ *, nums ! reads 10 integers from user, and stores it in the array
     
 

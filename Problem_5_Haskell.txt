@@ -1,20 +1,19 @@
-import System.Exit (exitSuccess)
-
 main :: IO ()
 main = do
-    nStr <- getLine
-    let n = read nStr :: Int
+    line <- getLine
+    let allParts = words line
     
-    if n < 2 || n > 100 
-        then putStrLn "Out of bounds" >> exitSuccess
-        else do
-            input <- getLine
-            let values = map read (words input) :: [Int]
+    case allParts of
+        --head tail logic
+        (h:t) -> do
+            let intN = read h :: Int
+            let intn = map read t :: [Integer]
             
-            if any (\x -> x < -1000 || x > 1000) values
-                then putStrLn "Out of bounds" >> exitSuccess
-                else do
-                    -- reverse, filter even, print
-                    let evensReversed = filter even (reverse values)
-                    putStrLn $ unwords (map show evensReversed)
--- input N then enter, values should be inputted in next line
+            if 2 <= intN && intN <= 100 && length intn == intN && all (\n -> n >= -1000 && n <= 1000) intn
+                then do
+                    let evensReversed = filter even (reverse intn)
+                    putStrLn (unwords (map show evensReversed))
+                else return ()
+        
+        -- If the user enters nothing at all
+        [] -> return ()

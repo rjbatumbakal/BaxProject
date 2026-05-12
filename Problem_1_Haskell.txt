@@ -1,5 +1,4 @@
 import Text.Printf (printf)
-import System.Exit (exitSuccess)
 
 main :: IO ()
 main = do
@@ -17,5 +16,5 @@ main = do
                 then do
                     let allowance = multiplier * 2.75
                     printf "The multiplier is %.0f! Lulu's allowance for the week is $ %.2f!\n" multiplier allowance
-                else exitSuccess
-        else exitSuccess
+                else return ()
+        else return ()

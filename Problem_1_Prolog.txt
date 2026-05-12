@@ -1,5 +1,6 @@
 % define a rule that takes a list of numbers as input.
 calculate_lulus_weekly_allowance(Numbers) :- 
+
     % finds the 7th element in the list and stores it in 'Multiplier'
     nth1(7, Numbers, Multiplier),
 
@@ -14,7 +15,7 @@ calculate_lulus_weekly_allowance(Numbers) :-
 
 solve :-  
     read_line_to_string(user_input, String),
-    
+
     % split the string by spaces
     split_string(String, " ", "", StringList),
     
