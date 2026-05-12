@@ -15,5 +15,5 @@ main = do
                     putStrLn (unwords (map show evensReversed))
                 else return ()
         
-        -- If the user enters nothing at all
+        -- if user has no input
         [] -> return ()
