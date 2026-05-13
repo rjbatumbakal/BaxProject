@@ -5,7 +5,6 @@ main = do
     
     line <- getLine
     let parts = words line
-
     let nums = map read parts :: [Integer]
 
     if length nums == 3 && all (\n -> n >= -100 && n <= 100) nums

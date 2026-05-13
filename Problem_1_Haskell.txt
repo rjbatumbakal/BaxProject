@@ -4,12 +4,12 @@ main = do
     lineInput <- getLine {-gets the entire line of input-}
     let numbers = map read (words lineInput) :: [Double] {- split the line into words and convert to double -}
     
-    if length numbers >= 10
+    if length numbers == 10
         then do
             let seventh_number = numbers !! 6 {- assigning of 7th number -}
             if seventh_number >= 1 && seventh_number <= 100 {- constraints -}
                 then do
                     let weekly_allowance = seventh_number * 2.75
-                    printf "The multiplier is %.0f! Lulu's allowance for the week is $ %.2f!\n" seventh_number weekly_allowance
+                    printf "The multiplier is %.0f! Lulu's allowance is $ %.2f!\n" seventh_number weekly_allowance
                 else return ()
         else return ()
