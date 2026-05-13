@@ -6,7 +6,7 @@ int main (){
 	cin >> a >> b >> c;
     if ( a > -100 && a < 100 && b > -100 && b < 100 && c > -100 && c < 100) {
         int x = a, y = b, z = c;
-        // Sort three values in ascending order through swaps
+        /* Sort three values in ascending order through swaps*/
         if (x > y) {
             int temp = x;
             x = y;

@@ -24,7 +24,7 @@ PROGRAM simpleSort
             x = y 
             y = temp 
         END IF
-        PRINT '(I0, 1X, I0, 1X, I0)', x, y, z ! 1x is for space
+        PRINT '(I0, 1X, I0, 1X, I0)', x, y, z ! 1x is for space !
         PRINT '(I0, 1X, I0, 1X, I0)', a, b, c
     ELSE
         STOP

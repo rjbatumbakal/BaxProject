@@ -4,10 +4,10 @@ main = do
     let allParts = words line
     
     case allParts of
-        --head tail logic
+        {- head tail logic -}
         (h:t) -> do
             let intN = read h :: Int
-            -- take only the first intN elements from the tail
+            {- take only the first intN elements from the tail -}
             let intn = take intN (map read t :: [Integer])
             
             if 2 <= intN && intN <= 100 && all (\n -> n >= -1000 && n <= 1000) intn
@@ -16,5 +16,5 @@ main = do
                     putStrLn (unwords (map show evensReversed))
                 else return ()
         
-        -- if user has no input
+        {- if user has no input -}
         [] -> return ()

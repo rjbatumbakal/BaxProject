@@ -1,21 +1,21 @@
 count_uppercase([], 0).
 
 count_uppercase([Head|Tail], Count) :-
-    % checks if H is A-Z
+    /* checks if H is A-Z */
     char_type(Head, upper),   
 
-    % go look at the rest of the list
+    /* go look at the rest of the list */
     count_uppercase(Tail, RestCount), 
     
-    % add 1 to whatever we found in the rest
+    /* add 1 to whatever we found in the rest */
     Count is RestCount + 1.        
     
 count_uppercase([Head|Tail], Count) :-
     
-    %  \+ means "NOT"
+    /* \+ means "NOT" */
     \+ char_type(Head, upper),   
     
-    % count stays exactly the same as the Tail's count
+    /* count stays exactly the same as the Tail's count */
     count_uppercase(Tail, Count).     
     
 process_test_cases(0) :- !.
@@ -23,32 +23,32 @@ process_test_cases(0) :- !.
 process_test_cases(N) :-
     read_line_to_string(user_input, N_char_string),
     
-    %split the string by spaces
+    /* split the string by spaces */
     split_string(N_char_string, " ", "", [T_string, Char_string]), 
     
-    % convert t and check constraint
+    /* convert t and check constraint */
     number_string(T, T_string),
     
     T >= 1,
     T =< 100,
     
-    % convert to list
+    /* convert to list */
     string_chars(Char_string, FullList),
-    % length/2 can be used to "clip" a list to a specific size
+    /* length/2 can be used to "clip" a list to a specific size */
     length(ClippedList, T), 
     append(ClippedList, _, FullList), % this extracts the first T elements
     count_uppercase(ClippedList, Result),
 
     writeln(Result), 
     
-    % loop back
+    /* loop back */
     NextN is N - 1,
     process_test_cases(NextN).
 
 solve :-
     read_line_to_string(user_input, N_string), 
     
-    % convert N and check constraint
+    /* convert N and check constraint */
     number_string(N, N_string),
     
     N >= 1,

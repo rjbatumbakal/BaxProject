@@ -1,16 +1,15 @@
 PROGRAM average
-IMPLICIT NONE 
+    IMPLICIT NONE 
 
-INTEGER :: a, b, c
-REAL :: avg 
+    INTEGER :: a, b, c
+    REAL :: avg 
 
-READ *, a, b, c
+    READ *, a, b, c
 
-IF (a < 1 .OR. a > 20 .OR. b < 1 .OR. b > 20 .OR. c < 1 .OR. c > 20) STOP
+    IF (a < 1 .OR. a > 20 .OR. b < 1 .OR. b > 20 .OR. c < 1 .OR. c > 20) STOP
 
+    avg = REAL(a + b + c)/3
 
-avg = REAL(a + b + c)/3
-
-PRINT '(F0.2)', avg
+    PRINT '(F0.2)', avg
 
 END PROGRAM average

@@ -1,22 +1,16 @@
-print_with_spaces([A, B, C]) :-
-    format('~w ~w ~w~n', [A, B, C]).
-
-
 process_sort(OriginalList) :-
-    % assign list into three variables to check constraints
+    /* assign list into three variables to check constraints */
     [N1, N2, N3] = OriginalList,
     
-    % constraints
-    between(-100, 100, N1),
-    between(-100, 100, N2),
-    between(-100, 100, N3),
+    /* constraints */
+    N1 >= -100, N1 =< 100,
+    N2 >= -100, N2 =< 100,
+    N3 >= -100, N3 =< 100,
 
-    % creates the sorted list
+    /* creates the sorted list */
     msort(OriginalList, SortedList),
-    print_with_spaces(SortedList),
-    print_with_spaces(OriginalList).
-
-
+    format('~w ~w ~w~n', SortedList),
+    format('~w ~w ~w~n', OriginalList).
 
 solve :-
     read_line_to_string(user_input, String),

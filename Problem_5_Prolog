@@ -1,23 +1,27 @@
 filter_evens([], []).
 
 filter_evens([Head|Tail], [Head|Evens]) :-
-    0 is Head mod 2,             % 'mod 2' checks the remainder
+    /* 'mod 2' checks the remainder */
+    0 is Head mod 2,             
     filter_evens(Tail, Evens).
 
 filter_evens([Head|Tail], Evens) :-
-    1 is abs(Head mod 2),        % abs() handles negative numbers
+    /* abs() handles negative numbers */
+    1 is abs(Head mod 2),        
     filter_evens(Tail, Evens).
     
-check_range(N) :- between(-1000, 1000, N).
+check_range(N) :- 
+    N >= -1000, 
+    N =< 1000.
 
 process_line(Numbers) :-
-    % check constraints
+    /* check constraints */
     maplist(check_range, Numbers),
     
-    % gets only the even numbers
+    /* gets only the even numbers */
     filter_evens(Numbers, Evens),
     
-    % reverse list
+    /* reverse list */
     reverse(Evens, ReversedEvens),
     
     atomic_list_concat(ReversedEvens, ' ', Output),
@@ -27,11 +31,12 @@ solve :-
     read_line_to_string(user_input, Line),
     split_string(Line, " ", "", [NStr|StringList]),
     
-    % convert N and check constraint
+    /* convert N and check constraint */
     number_string(N, NStr),
-    between(2, 100, N),
+    N >= 2, 
+    N =< 100,
     
-    % convert the rest of the numbers
+    /* convert the rest of the numbers */
     maplist(number_string, Numbers, StringList),
     
     process_line(Numbers).

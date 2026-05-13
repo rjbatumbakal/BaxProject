@@ -4,7 +4,7 @@ PROGRAM evenFromEnd
     INTEGER :: N, i 
     INTEGER, DIMENSION(100) :: myList
     
-    READ *, N, myList(1:N) ! allows to enter N and the numbers to be put inside the list inputted in one line
+    READ *, N, myList(1:N) ! allows to enter N and the numbers to be put inside the list inputted in one line !
     
     DO i = 1, N
         IF (-1000 > myList(i) .OR. myList(i) > 1000) STOP
@@ -13,7 +13,7 @@ PROGRAM evenFromEnd
     
     DO i = N, 1, -1
         IF (MOD(myList(i), 2) == 0) THEN
-            WRITE(*, '(I0, 1X)', ADVANCE='NO') myList(i) ! allows to print the output in one line, separated by single space
+            WRITE(*, '(I0, 1X)', ADVANCE='NO') myList(i) ! allows to print the output in one line, separated by single space !
         END IF    
     END DO
     

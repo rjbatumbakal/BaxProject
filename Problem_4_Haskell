@@ -10,12 +10,12 @@ main = do
 
     if length nums == 3 && all (\n -> n >= -100 && n <= 100) nums
         then do
-            -- sorts number
+            {- sorts number -}
             let sortedNums = sort nums
             
-            -- prints sorted
+            {- prints sorted -}
             putStrLn (unwords (map show sortedNums))
             
-            -- prints og
+            {- prints og -}
             putStrLn (unwords (map show nums))
         else return ()

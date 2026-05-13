@@ -1,48 +1,25 @@
 import Data.Char (isUpper)
 import Control.Monad (replicateM_)
 
-countUpper :: String -> Int
-countUpper [] = 0
-
--- head and tail logic, split into Head (first char) and Tail (rest)
-countUpper (h:t) 
-
-    -- if h is upper, add 1 and keep going
-    | isUpper h = 1 + countUpper t 
-    
-    -- if not, just keep going with the tail
-    | otherwise = countUpper t      
-
-
 processLine :: IO ()
 processLine = do
-
-    linetch<- getLine
-    -- split input string into a list of words
-    let parts = words linetch
-    
-    case parts of
-
-        -- pattern matching, match t as first item, and followng ch as second, ignore extras (_)
-        (tString:ch:_) -> do  
-            let t = read tString :: Int
+    linetch <- getLine
+    case words linetch of
+        (tStr:str:_) -> do
+            let t = read tStr
             if t >= 1 && t <= 100
-            
-                -- take the first t letters from ch and count uppercase
-                then print (countUpper (take t ch))
+                {- Count uppercase in first t chars -}
+                then print $ length $ filter isUpper (take t str) 
                 else return ()
-        _ -> return ()
+        _ -> return () 
 
 main :: IO ()
 main = do
     lineN <- getLine
-    -- read total number of test cases
-    let n = read lineN :: Int
-    
-    --constraints
+    {- read total number of test cases -}
+    let n = read lineN
+    {- constraints -}
     if n >= 1 && n <= 100
-        -- replicateM_ acts as a loop, running 'processLine' n times
-        then replicateM_ n processLine 
-    else return ()
-    
-    
+        {- loop -}
+        then replicateM_ n processLine
+        else return ()
