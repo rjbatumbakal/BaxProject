@@ -7,7 +7,6 @@ IMPLICIT NONE
 
     READ *, nums ! reads 10 integers from user, and stores it in the array !
 
-
     DO i = 1, 10 ! loop, checks the array !
         IF (nums(i) < 1 .OR. nums(i) > 100) STOP ! constraints !
     END DO
@@ -15,7 +14,7 @@ IMPLICIT NONE
     seventh_number = nums(7)
     weekly_allowance = REAL(seventh_number) * 2.75
     
-    PRINT '(A, I0, A, F0.2, A)', "The multiplier is ", seventh_number, "! Lulu's allowance is $ ", weekly_allowance, "!"
+    PRINT '(A, I0, A, F0.2, A)', "The multiplier is ", seventh_number, "! Lulu's allowance for the week is $ ", weekly_allowance, "!"
     
     ! A means text !
     ! IO prints INTEGER seventh_number !

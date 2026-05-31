@@ -39,7 +39,10 @@ solve :-
     /* convert the rest of the numbers */
     maplist(number_string, Numbers, StringList),
     
+    /* checks length */
+    length(Numbers, Len),
+    Len =:= N,
+    
     process_line(Numbers).
 
-    
 :- initialization((solve, halt)).

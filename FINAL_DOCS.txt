@@ -1,0 +1,600 @@
+Programming Language: C++
+
+PROBLEM #1 SOURCE CODE:
+
+#include <iostream>
+#include <iomanip>
+using namespace std; 
+
+int main(){
+    int array [10];
+    for (int i = 0; i < 10; i++){
+        cin >> array[i]; /* stores the input integers in an array */
+        if (array[i] <= 0 || array[i] >= 101) {
+            return 0; /* returns 0 if integer is out of bounds*/
+        }
+    }
+    int seventh_number = array[6]; /* retrieves the seventh number from the array (index 6) and stores it in the variable seventh_number */
+    float weekly_allowance = seventh_number * 2.75; /*calculates Lulu's weekly allowance by multiplying the seventh number by 2.75 and stores the result in the variable weekly_allowance*/
+    cout << "The multiplier is " << seventh_number << "! Lulu's allowance for the week is $ " << fixed << setprecision(2) << weekly_allowance << "!" << endl;
+}
+
+PROBLEM #2 SOURCE CODE:
+
+#include <iostream>
+#include <cctype>
+using namespace std;
+
+int main() {
+    int N; /*N indicating how many character sequences are in the input.*/
+    cin >> N;
+    if (1 <= N && N <= 100) {
+        for (int i = 0; i < N; ++i) {
+            int t; /*Succeeding lines begin with an integer t indicating how many characters ch follow.*/
+            cin >> t;
+            if (1 <= t && t <= 100) {
+                int uppercaseCount = 0; /*initial counter of uppercase count*/
+                for (int j = 0; j < t; ++j) { /*checks each input of ch if it is in uppercase*/
+                    char ch;
+                    cin >> ch; 
+                    if (isupper(ch)) { /* uppercase checker*/
+                        uppercaseCount = uppercaseCount + 1;
+                    }
+                }
+                cout << uppercaseCount << endl; 
+            }
+            else {
+                return 0; /* Exit the program if t is out of bounds.*/
+            }
+        }
+    }
+    else {
+        return 0; /*Exit the program if N is out of bounds.*/
+    } 
+}
+
+PROBLEM #3 SOURCE CODE:
+
+#include <iostream>
+#include <iomanip>
+using namespace std;
+
+int main() {
+    int a, b, c;
+    double average;
+    cin >> a >> b >> c;
+    if (a > 0 && a <= 20 && b > 0 && b <= 20 && c > 0 && c <= 20) { 
+        average = (a + b + c) / 3.0; /* calculates the average of the three integers by summing them and dividing by 3, and stores the result in the variable average*/
+    cout << fixed << setprecision(2) << average << endl; /* outputs the average of the three integers to the user*/
+    }
+    else {
+        return 0; /* exits the program if any input integer is out of bounds*/
+    }
+
+}
+
+
+PROBLEM #4 SOURCE CODE:
+
+#include <iostream>
+using namespace std;
+
+int main (){
+	int a, b, c;
+	cin >> a >> b >> c;
+    if ( a >= -100 && a <= 100 && b >= -100 && b <= 100 && c >= -100 && c <= 100) {
+        int x = a, y = b, z = c;
+        /* Sort three values in ascending order through swaps*/
+        if (x > y) {
+            int temp = x;
+            x = y;
+            y = temp;
+        }
+        if (y > z) {
+            int temp = y;
+            y = z;
+            z = temp;
+        }
+        if (x > y) {
+            int temp = x;
+            x = y;
+            y = temp;
+        }
+        cout << x << " " << y << " " << z << "\n";
+        cout << a << " " << b << " " << c << "\n";
+    }
+    else {
+        return 0;
+    }
+
+}
+
+
+
+
+
+
+
+
+
+
+PROBLEM #5 SOURCE CODE:
+
+#include <iostream>
+#include <vector>
+using namespace std;
+
+int main() {
+
+	int N;
+    cin >> N;
+
+	if (2 <= N && N <= 100) {
+		vector<int> values(N); /* Read N integers into the vector.*/
+		for (int n = 0; n < N; n++) {
+			cin >> values[n];
+            if (-1000 > values[n] || values[n] > 1000) {
+                return 0; /* Exit the program if any input integer is out of bounds.*/
+            }
+		}
+            /*Traverse from the end of the list toward the beginning.*/
+        for (int n = N - 1; n >= 0; n--) {
+            /*Check if the current number is even using modulo.*/
+            if (values[n] % 2 == 0) {
+                cout << values[n] << " ";
+            }
+        }
+        cout << endl;     
+	}
+    else {
+        return 0; /*Exit the program if N is out of bounds.*/
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+Programming Language: HASKELL
+
+PROBLEM #1 SOURCE CODE:
+
+import Text.Printf (printf)
+main :: IO ()
+main = do
+    lineInput <- getLine {-gets the entire line of input-}
+    let numbers = map read (words lineInput) :: [Double] {- split the line into words and convert to double -}
+    
+    if length numbers == 10
+        then do
+            let seventh_number = numbers !! 6 {- assigning of 7th number -}
+            if seventh_number >= 1 && seventh_number <= 100 {- constraints -}
+                then do
+                    let weekly_allowance = seventh_number * 2.75
+                    printf "The multiplier is %.0f! Lulu's allowance for the week is $ %.2f!\n" seventh_number weekly_allowance
+                else return ()
+        else return ()
+
+PROBLEM #2 SOURCE CODE:
+
+import Data.Char (isUpper)
+import Control.Monad (replicateM_)
+
+processLine :: IO ()
+processLine = do
+    linetch <- getLine
+    case words linetch of
+        (tStr:str:_) -> do
+            let t = read tStr
+            if t >= 1 && t <= 100
+                {- Count uppercase in first t chars -}
+                then print $ length $ filter isUpper (take t str) 
+                else return ()
+        _ -> return () 
+
+main :: IO ()
+main = do
+    lineN <- getLine
+    {- read total number of test cases -}
+    let n = read lineN
+    {- constraints -}
+    if n >= 1 && n <= 100
+        {- loop -}
+        then replicateM_ n processLine
+        else return ()
+
+PROBLEM #3 SOURCE CODE:
+
+import Text.Printf (printf)
+
+main :: IO ()
+main = do
+    
+    line <- getLine
+    let parts = words line
+
+    let scores = map read parts :: [Double]
+
+    if length scores == 3 && all (\n -> n >= 1 && n <= 20) scores
+        then printf "%.2f\n" (sum scores / 3)
+        else return ()
+
+PROBLEM #4 SOURCE CODE:
+
+import Data.List (sort)
+
+main :: IO ()
+main = do
+    
+    line <- getLine
+    let parts = words line
+    let nums = map read parts :: [Integer]
+
+    if length nums == 3 && all (\n -> n >= -100 && n <= 100) nums
+        then do
+            {- sorts number -}
+            let sortedNums = sort nums
+            
+            {- prints sorted -}
+            putStrLn (unwords (map show sortedNums))
+            
+            {- prints og -}
+            putStrLn (unwords (map show nums))
+        else return ()
+PROBLEM #5 SOURCE CODE:
+
+main :: IO ()
+main = do
+    line <- getLine
+    let allParts = words line
+    
+    case allParts of
+        {- head tail logic -}
+        (h:t) -> do
+            let intN = read h :: Int
+            {- take only the first intN elements from the tail -}
+            let intn = take intN (map read t :: [Integer])
+            
+            if intN == length intn && 2 <= intN && intN <= 100 && all (\n -> n >= -1000 && n <= 1000) intn
+                then do
+                    let evensReversed = filter even (reverse intn)
+                    putStrLn (unwords (map show evensReversed))
+                else return ()
+        
+        {- if user has no input -}
+        [] -> return ()
+
+Programming Language: PROLOG
+
+PROBLEM #1 SOURCE CODE:
+
+/* define a rule that takes a list of numbers as input. */
+calculate_lulus_weekly_allowance(Numbers) :- 
+    length(Numbers, 10),
+    /* finds the 7th element in the list and stores it in 'Seventh_number' */
+    nth1(7, Numbers, Seventh_number),
+
+    /* constraints */
+    Seventh_number >= 1,
+    Seventh_number =< 100,
+
+    Weekly_Allowance is Seventh_number * 2.75,
+
+    /* ~w is for the Multiplier, ~2f is for the Weekly_Allowance, 2 is for decimal points */
+    format('The multiplier is ~w! Lulu\'s allowance for the week is $ ~2f!', [Seventh_number, Weekly_Allowance]).
+
+solve :-  
+    /* reads line as strings */
+    read_line_to_string(user_input, String),
+
+    /* split the string by spaces */
+    split_string(String, " ", "", StringList),
+    
+    /* convert strings to actual numbers */
+    maplist(number_string, Numbers, StringList),
+    
+    /* calculate */
+    calculate_lulus_weekly_allowance(Numbers).
+
+:- initialization((solve, halt)).
+
+PROBLEM #2 SOURCE CODE:
+
+count_uppercase([], 0).
+
+count_uppercase([Head|Tail], Count) :-
+    /* checks if H is A-Z */
+    char_type(Head, upper),   
+
+    /* go look at the rest of the list */
+    count_uppercase(Tail, RestCount), 
+    
+    /* add 1 to whatever we found in the rest */
+    Count is RestCount + 1.        
+    
+count_uppercase([Head|Tail], Count) :-
+    
+    /* \+ means "NOT" */
+    \+ char_type(Head, upper),   
+    
+    /* count stays exactly the same as the Tail's count */
+    count_uppercase(Tail, Count).     
+    
+process_test_cases(0) :- !.
+
+process_test_cases(N) :-
+    read_line_to_string(user_input, N_char_string),
+    
+    /* split the string by spaces */
+    split_string(N_char_string, " ", "", [T_string, Char_string]), 
+    
+    /* convert t and check constraint */
+    number_string(T, T_string),
+    
+    T >= 1,
+    T =< 100,
+    
+    /* convert to list */
+    string_chars(Char_string, FullList),
+    /* length/2 can be used to "clip" a list to a specific size */
+    length(ClippedList, T), 
+    append(ClippedList, _, FullList), % this extracts the first T elements
+    count_uppercase(ClippedList, Result),
+
+    writeln(Result), 
+    
+    /* loop back */
+    NextN is N - 1,
+    process_test_cases(NextN).
+
+solve :-
+    read_line_to_string(user_input, N_string), 
+    
+    /* convert N and check constraint */
+    number_string(N, N_string),
+    
+    N >= 1,
+    N =< 100,
+    
+    process_test_cases(N).
+
+:- initialization((solve, halt)).
+
+PROBLEM #3 SOURCE CODE:
+
+calculate_average([S1, S2, S3]) :-
+   
+    /* constraints */
+    S1 >= 1, S1 =< 20,
+    S2 >= 1, S2 =< 20,
+    S3 >= 1, S3 =< 20,
+
+    Average is (S1 + S2 + S3) / 3,
+    format('~2f~n', [Average]).
+    
+solve :-
+    read_line_to_string(user_input, String),
+    split_string(String, " ", "", StringList),   
+    maplist(number_string, Numbers, StringList),   
+    calculate_average(Numbers).
+    
+:- initialization((solve, halt)).
+
+PROBLEM #4 SOURCE CODE:
+
+process_sort(OriginalList) :-
+    /* assign list into three variables to check constraints */
+    [N1, N2, N3] = OriginalList,
+    
+    /* constraints */
+    N1 >= -100, N1 =< 100,
+    N2 >= -100, N2 =< 100,
+    N3 >= -100, N3 =< 100,
+
+    /* creates the sorted list */
+    msort(OriginalList, SortedList),
+    format('~w ~w ~w~n', SortedList),
+    format('~w ~w ~w~n', OriginalList).
+
+solve :-
+    read_line_to_string(user_input, String),
+    split_string(String, " ", "", StringList),
+    maplist(number_string, Numbers, StringList),
+    process_sort(Numbers).
+
+:- initialization((solve, halt)).
+
+PROBLEM #5 SOURCE CODE:
+
+filter_evens([], []).
+
+filter_evens([Head|Tail], [Head|Evens]) :-
+    /* 'mod 2' checks the remainder */
+    0 is Head mod 2,             
+    filter_evens(Tail, Evens).
+
+filter_evens([Head|Tail], Evens) :-
+    /* abs() handles negative numbers */
+    1 is abs(Head mod 2),        
+    filter_evens(Tail, Evens).
+    
+check_range(N) :- 
+    N >= -1000, 
+    N =< 1000.
+
+process_line(Numbers) :-
+    /* check constraints */
+    maplist(check_range, Numbers),
+    
+    /* gets only the even numbers */
+    filter_evens(Numbers, Evens),
+    
+    /* reverse list */
+    reverse(Evens, ReversedEvens),
+    
+    atomic_list_concat(ReversedEvens, ' ', Output),
+    writeln(Output).
+
+solve :-
+    read_line_to_string(user_input, Line),
+    split_string(Line, " ", "", [NStr|StringList]),
+    
+    /* convert N and check constraint */
+    number_string(N, NStr),
+    N >= 2, 
+    N =< 100,
+    
+    /* convert the rest of the numbers */
+    maplist(number_string, Numbers, StringList),
+    
+    /* checks length */
+    length(Numbers, Len),
+    Len =:= N,
+    
+    process_line(Numbers).
+
+:- initialization((solve, halt)).
+
+Programming Language: FORTRAN
+
+PROBLEM #1 SOURCE CODE:
+
+PROGRAM lulusWeekylAllowance
+IMPLICIT NONE
+
+    INTEGER, DIMENSION(10) :: nums ! this is the array that holds 10 integers !
+    REAL :: weekly_allowance ! declaring as real type to store the value with decimal points !
+    INTEGER :: i, seventh_number ! declaring the seventh number !
+
+    READ *, nums ! reads 10 integers from user, and stores it in the array !
+
+    DO i = 1, 10 ! loop, checks the array !
+        IF (nums(i) < 1 .OR. nums(i) > 100) STOP ! constraints !
+    END DO
+
+    seventh_number = nums(7)
+    weekly_allowance = REAL(seventh_number) * 2.75
+    
+    PRINT '(A, I0, A, F0.2, A)', "The multiplier is ", seventh_number, "! Lulu's allowance for the week is $ ", weekly_allowance, "!"
+    
+    ! A means text !
+    ! IO prints INTEGER seventh_number !
+    ! F6.1 prints REAL weekly_allowance !
+    
+END PROGRAM lulusWeekylAllowance
+
+PROBLEM #2 SOURCE CODE:
+
+PROGRAM countUpper
+    IMPLICIT NONE
+        INTEGER :: N, t, i, j, upperCount ! declaring of variables
+        CHARACTER(len=100) :: lineOfCh ! max length of 100 !
+
+        READ *, N
+        IF (N < 1 .OR. N > 100) STOP 
+
+        
+        DO i = 1, N ! loop through each test case !
+            upperCount = 0
+            READ *, t, lineOfCh ! reads the count and the whole string at once !
+            
+            IF (t < 1 .OR. t > 100) STOP
+            
+            DO j = 1, t ! loop through the first 't' characters of the string !
+                IF (lineOfCh(j:j) >= 'A' .AND. lineOfCh(j:j) <= 'Z') THEN
+                    upperCount = upperCount + 1 ! counter for uppercases in the lineof Ch !
+                END IF
+            END DO
+            
+            PRINT '(I0)', upperCount !(I0) removes leading spaces from output !
+        END DO
+END PROGRAM countUpper
+
+PROBLEM #3 SOURCE CODE:
+
+PROGRAM average
+    IMPLICIT NONE 
+
+    INTEGER :: a, b, c
+    REAL :: avg 
+
+    READ *, a, b, c
+
+    IF (a < 1 .OR. a > 20 .OR. b < 1 .OR. b > 20 .OR. c < 1 .OR. c > 20) STOP
+
+    avg = REAL(a + b + c)/3
+
+    PRINT '(F0.2)', avg
+
+END PROGRAM average
+
+PROBLEM #4 SOURCE CODE:
+
+PROGRAM simpleSort
+    IMPLICIT NONE 
+
+    INTEGER :: a, b, c, x, y, z, temp
+    READ *, a, b, c
+    IF (a >= -100 .AND. a <= 100 .AND. b >= -100 .AND. b <= 100 .AND. c >= -100 .AND. c <= 100) THEN
+        x = a 
+        y = b 
+        z = c
+        IF (x > y) THEN
+            temp = x 
+            x = y 
+            y = temp 
+        END IF
+        
+        IF (y > z) THEN
+            temp = y 
+            y = z 
+            z = temp 
+        END IF
+        
+        IF (x > y) THEN
+            temp = x 
+            x = y 
+            y = temp 
+        END IF
+        PRINT '(I0, 1X, I0, 1X, I0)', x, y, z ! 1x is for space !
+        PRINT '(I0, 1X, I0, 1X, I0)', a, b, c
+    ELSE
+        STOP
+    END IF
+END PROGRAM simpleSort
+
+PROBLEM #5 SOURCE CODE:
+
+PROGRAM evenFromEnd
+    IMPLICIT NONE
+    
+    INTEGER :: N, i 
+    INTEGER, DIMENSION(100) :: myList
+    
+    READ *, N, myList(1:N) ! allows to enter N and the numbers to be put inside the list inputted in one line !
+    
+    IF (N < 2 .OR. N > 100) STOP
+    
+    DO i = 1, N
+        IF (-1000 > myList(i) .OR. myList(i) > 1000) STOP
+    END DO
+    
+    
+    DO i = N, 1, -1
+        IF (MOD(myList(i), 2) == 0) THEN
+            WRITE(*, '(I0, 1X)', ADVANCE='NO') myList(i) ! allows to print the output in one line, separated by single space !
+        END IF    
+    END DO
+    
+
+END PROGRAM evenFromEnd
+
+
+
+

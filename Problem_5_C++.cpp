@@ -12,11 +12,10 @@ int main() {
 		for (int n = 0; n < N; n++) {
 			cin >> values[n];
             if (-1000 > values[n] || values[n] > 1000) {
-                cout << "Out of bounds" << endl;
                 return 0; /* Exit the program if any input integer is out of bounds.*/
             }
 		}
-                /*Traverse from the end of the list toward the beginning.*/
+            /*Traverse from the end of the list toward the beginning.*/
         for (int n = N - 1; n >= 0; n--) {
             /*Check if the current number is even using modulo.*/
             if (values[n] % 2 == 0) {
@@ -26,7 +25,6 @@ int main() {
         cout << endl;     
 	}
     else {
-        cout << "Out of bounds" << endl;
         return 0; /*Exit the program if N is out of bounds.*/
     }
 }

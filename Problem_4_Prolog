@@ -18,5 +18,4 @@ solve :-
     maplist(number_string, Numbers, StringList),
     process_sort(Numbers).
 
-
 :- initialization((solve, halt)).
